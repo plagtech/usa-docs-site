@@ -711,7 +711,7 @@ export default function USADocs() {
         {/* NAV */}
         <nav className="nav">
           <div className="nav-left">
-            <span className="brand" onClick={reset}>USA Docs</span>
+            <span className="brand" onClick={reset}>🇺🇸 USA Docs</span>
             <span className="not-lawyers">{t.notLawyers}</span>
           </div>
           <div className="lang-bar">
