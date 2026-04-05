@@ -686,13 +686,13 @@ export default function USADocs() {
           formNumber: form.number,
           formName: getName(form),
           customerEmail: ans.petitioner_email || ans.email || null,
+          answers: ans,
         }),
       });
       const data = await res.json();
       if (data.url) {
-        window.open(data.url, "_blank");
-        // Show complete view — in production, verify payment via session ID
-        setTimeout(() => { setView("complete"); window.scrollTo(0,0); }, 3000);
+        // Redirect to Stripe in the same tab — they come back to /success after paying
+        window.location.href = data.url;
       } else {
         alert("Payment error. Please try again.");
         setView("review");
@@ -711,7 +711,7 @@ export default function USADocs() {
         {/* NAV */}
         <nav className="nav">
           <div className="nav-left">
-            <span className="brand" onClick={reset}><svg width="22" height="14" viewBox="0 0 60 30" style={{display:"inline-block",verticalAlign:"middle",marginRight:6,borderRadius:2,boxShadow:"0 0 0 1px rgba(0,0,0,0.1)"}}><clipPath id="fc"><rect width="60" height="30" rx="2"/></clipPath><g clipPath="url(#fc)"><rect width="60" height="30" fill="#B22234"/><g fill="#fff">{[1,3,5,7,9,11].map(i=><rect key={i} y={i*30/13} width="60" height={30/13}/>)}</g><rect width="24" height={30*7/13} fill="#3C3B6E"/><g fill="#fff" fontSize="3" textAnchor="middle">{[[4,2],[8,2],[12,2],[16,2],[20,2],[6,4.5],[10,4.5],[14,4.5],[18,4.5],[4,7],[8,7],[12,7],[16,7],[20,7],[6,9.5],[10,9.5],[14,9.5],[18,9.5],[4,12],[8,12],[12,12],[16,12],[20,12],[6,14.5],[10,14.5],[14,14.5],[18,14.5]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="1" fill="#fff"/>)}</g></g></svg>USA Docs</span>
+            <span className="brand" onClick={reset}>USA Docs</span>
             <span className="not-lawyers">{t.notLawyers}</span>
           </div>
           <div className="lang-bar">
