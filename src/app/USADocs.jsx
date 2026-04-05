@@ -497,7 +497,8 @@ body{font-family:var(--body);background:var(--bg);color:var(--text)}
 /* NAV */
 .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:white;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
 .nav-left{display:flex;align-items:center;gap:12px}
-.brand{font-family:var(--display);font-size:20px;font-weight:800;color:var(--blue);cursor:pointer;letter-spacing:-.5px}
+.brand{font-family:var(--display);font-size:20px;font-weight:800;color:var(--blue);cursor:pointer;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:7px}
+.brand-flag{width:22px;height:16px;border-radius:2px;flex-shrink:0;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
 .not-lawyers{font-size:10px;color:var(--muted);background:var(--elevated);padding:4px 10px;border-radius:20px;border:1px solid var(--border);white-space:nowrap}
 .lang-bar{display:flex;gap:1px;background:var(--elevated);padding:3px;border-radius:10px;border:1px solid var(--border);flex-wrap:wrap}
 .lb{background:none;border:none;padding:5px 10px;border-radius:7px;cursor:pointer;font-size:12px;transition:all .15s;font-family:var(--body);color:var(--muted);font-weight:500;white-space:nowrap}
@@ -711,7 +712,7 @@ export default function USADocs() {
         {/* NAV */}
         <nav className="nav">
           <div className="nav-left">
-            <span className="brand" onClick={reset}>USA Docs</span>
+            <span className="brand" onClick={reset}><svg className="brand-flag" viewBox="0 0 60 42" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="42" fill="#B22234"/><rect y="3.23" width="60" height="3.23" fill="#fff"/><rect y="9.69" width="60" height="3.23" fill="#fff"/><rect y="16.15" width="60" height="3.23" fill="#fff"/><rect y="22.62" width="60" height="3.23" fill="#fff"/><rect y="29.08" width="60" height="3.23" fill="#fff"/><rect y="35.54" width="60" height="3.23" fill="#fff"/><rect width="24" height="22.62" fill="#3C3B6E"/><g fill="#fff" fontSize="3" fontFamily="serif">{[[1.5,2],[5.5,2],[9.5,2],[13.5,2],[17.5,2],[21.5,2],[3.5,4.5],[7.5,4.5],[11.5,4.5],[15.5,4.5],[19.5,4.5],[1.5,7],[5.5,7],[9.5,7],[13.5,7],[17.5,7],[21.5,7],[3.5,9.5],[7.5,9.5],[11.5,9.5],[15.5,9.5],[19.5,9.5],[1.5,12],[5.5,12],[9.5,12],[13.5,12],[17.5,12],[21.5,12],[3.5,14.5],[7.5,14.5],[11.5,14.5],[15.5,14.5],[19.5,14.5],[1.5,17],[5.5,17],[9.5,17],[13.5,17],[17.5,17],[21.5,17],[3.5,19.5],[7.5,19.5],[11.5,19.5],[15.5,19.5],[19.5,19.5]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r=".9"/>)}</g></svg>USA Docs</span>
             <span className="not-lawyers">{t.notLawyers}</span>
           </div>
           <div className="lang-bar">
