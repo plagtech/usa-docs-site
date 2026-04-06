@@ -244,8 +244,15 @@ function SuccessContent() {
           <p>
             USA Docs is a document preparation service. We are not lawyers.
             We are not a government agency. We do not give legal advice.
-            <br />© 2026 USA Docs
           </p>
+          <p style={{ marginTop: 8 }}>
+            <a href="/terms" style={{ color: "#2563eb", textDecoration: "none", fontSize: 11, marginRight: 12 }}>Terms of Service</a>
+            <a href="/privacy" style={{ color: "#2563eb", textDecoration: "none", fontSize: 11 }}>Privacy Policy</a>
+          </p>
+          <p style={{ marginTop: 6 }}>
+            Questions? <a href="mailto:usadocs777@gmail.com" style={{ color: "#2563eb", textDecoration: "none" }}>usadocs777@gmail.com</a>
+          </p>
+          <p style={{ marginTop: 6 }}>© 2026 USA Docs</p>
         </div>
       </div>
     </>

@@ -634,6 +634,12 @@ body{font-family:var(--body);background:var(--bg);color:var(--text)}
 .foot-warn{background:var(--amber-light);border:1px solid #F5DEB3;border-radius:8px;padding:10px 16px;margin-bottom:8px}
 .foot-warn p{font-size:11px;color:var(--amber);line-height:1.5;font-weight:500}
 .foot p{font-size:11px;color:var(--muted)}
+.foot-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.foot-links a{font-size:12px;color:var(--blue);text-decoration:none;font-weight:500}
+.foot-links a:hover{text-decoration:underline}
+.foot-contact{font-size:11px;color:var(--muted);margin-bottom:8px}
+.foot-contact a{color:var(--blue);text-decoration:none}
+.foot-contact a:hover{text-decoration:underline}
 
 .safe-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--green);background:var(--green-light);padding:4px 12px;border-radius:20px;margin-bottom:20px;font-weight:500}
 
@@ -916,6 +922,11 @@ export default function USADocs() {
         {/* FOOTER */}
         <div className="foot">
           <div className="foot-warn"><p>{t.footerLine1} {t.footerLine2}</p></div>
+          <div className="foot-links">
+            <a href="/terms">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a>
+          </div>
+          <div className="foot-contact">Questions? Email us at <a href="mailto:usadocs777@gmail.com">usadocs777@gmail.com</a></div>
           <p>{t.footerCopy}</p>
         </div>
       </div>
