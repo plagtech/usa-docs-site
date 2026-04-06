@@ -97,6 +97,7 @@ function SuccessContent() {
   const [downloading, setDownloading] = useState(null); // null, "form", "instructions"
   const [error, setError] = useState(null);
   const [paymentInfo, setPaymentInfo] = useState(null);
+  const [emailStatus, setEmailStatus] = useState(null); // null, "sending", "sent", "error"
 
   useEffect(() => {
     if (!sessionId) {
@@ -152,6 +153,25 @@ function SuccessContent() {
       alert(err.message || "Failed to download. Please try again.");
     }
     setDownloading(null);
+  };
+
+  const emailDocuments = async () => {
+    setEmailStatus("sending");
+    try {
+      const res = await fetch(
+        `${API_URL}/api/email-documents/${sessionId}`,
+        { method: "POST" }
+      );
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setEmailStatus("sent");
+      } else {
+        throw new Error(data.error || "Failed to send email");
+      }
+    } catch (err) {
+      console.error(err);
+      setEmailStatus("error");
+    }
   };
 
   const formName = FORM_NAMES[formId] || formId?.toUpperCase() || "Your Form";
@@ -223,6 +243,37 @@ function SuccessContent() {
                   ? "Generating..."
                   : "Download Filing Checklist (PDF)"}
               </button>
+            </div>
+
+            <div className="download-card" style={{ borderColor: emailStatus === "sent" ? "#059669" : undefined }}>
+              <h3>📧 Email Me My Documents</h3>
+              <p>
+                {emailStatus === "sent"
+                  ? `Documents sent to ${paymentInfo?.customerEmail || "your email"}. Check your inbox (and spam folder).`
+                  : "Send both your completed form and filing checklist to the email you used at checkout. Keep them safe in your inbox."}
+              </p>
+              {emailStatus !== "sent" && (
+                <button
+                  className="dl-btn secondary"
+                  style={{ background: "#eff6ff", color: "#2563eb", borderColor: "#2563eb" }}
+                  onClick={emailDocuments}
+                  disabled={emailStatus === "sending" || downloading !== null}
+                >
+                  {emailStatus === "sending"
+                    ? "Sending..."
+                    : emailStatus === "error"
+                    ? "Try Again — Send to My Email"
+                    : "Send Documents to My Email"}
+                </button>
+              )}
+              {emailStatus === "sent" && (
+                <p className="status-msg" style={{ color: "#059669" }}>✓ Sent successfully</p>
+              )}
+              {emailStatus === "error" && (
+                <p className="status-msg" style={{ color: "#dc2626" }}>
+                  Could not send email. Please download your documents above instead.
+                </p>
+              )}
             </div>
 
             <a
