@@ -69,6 +69,8 @@ const T = {
     helpPillar3d: "Your information is protected. We never share it.",
     answerRequired: "Please answer this question to continue.",
     processing: "Processing time",
+    heroEmotion: "Your family's future starts with the right paperwork.",
+    heroPrice: "Starting at just",
   },
   es: {
     brand: "USA Docs",
@@ -128,6 +130,8 @@ const T = {
     helpPillar3d: "Su información está protegida. Nunca la compartimos.",
     answerRequired: "Por favor responda esta pregunta para continuar.",
     processing: "Tiempo de procesamiento",
+    heroEmotion: "El futuro de su familia comienza con los documentos correctos.",
+    heroPrice: "Desde solo",
   },
   vi: {
     brand: "USA Docs",
@@ -505,10 +509,19 @@ body{font-family:var(--body);background:var(--bg);color:var(--text)}
 .lb:hover{background:white;color:var(--text)}
 .lb.on{background:var(--blue);color:white;box-shadow:var(--shadow)}
 
+/* HERO BANNER */
+.hero-banner{position:relative;width:100%;max-height:420px;overflow:hidden}
+.hero-banner img{width:100%;height:auto;display:block;object-fit:cover;max-height:420px}
+.hero-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.55) 100%)}
+.hero-banner-text{position:absolute;bottom:24px;left:0;right:0;text-align:center;padding:0 24px}
+.hero-banner-text h2{font-family:var(--display);font-size:clamp(18px,3.5vw,28px);font-weight:700;color:white;text-shadow:0 2px 8px rgba(0,0,0,0.4);line-height:1.3}
+
 /* HERO */
-.hero{text-align:center;padding:64px 24px 40px;max-width:680px;margin:0 auto}
-.hero h1{font-family:var(--display);font-size:clamp(28px,4.5vw,44px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:12px}
-.hero p{font-size:16px;color:var(--text2);max-width:480px;margin:0 auto 28px;line-height:1.6}
+.hero{text-align:center;padding:36px 24px 32px;max-width:680px;margin:0 auto}
+.hero h1{font-family:var(--display);font-size:clamp(26px,4.5vw,40px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:10px}
+.hero p{font-size:16px;color:var(--text2);max-width:480px;margin:0 auto 20px;line-height:1.6}
+.hero-price{font-size:14px;color:var(--green);font-weight:600;margin-bottom:20px}
+.hero-price span{font-size:22px;font-weight:800}
 .cta{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:white;border:none;padding:14px 28px;border-radius:var(--radius);font-size:15px;font-weight:600;cursor:pointer;font-family:var(--body);box-shadow:var(--shadow-md);transition:all .2s}
 .cta:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:var(--shadow-lg)}
 
@@ -648,7 +661,10 @@ body{font-family:var(--body);background:var(--bg);color:var(--text)}
   .pillars{grid-template-columns:1fr}
   .det-head{flex-direction:column}
   .nav{padding:10px 14px;flex-wrap:wrap;gap:8px}
-  .hero{padding:40px 16px 28px}
+  .hero{padding:28px 16px 20px}
+  .hero-banner{max-height:280px}
+  .hero-banner img{max-height:280px}
+  .hero-banner-text h2{font-size:18px}
   .grid{grid-template-columns:1fr}
   .not-lawyers{display:none}
 }
@@ -746,9 +762,17 @@ export default function USADocs() {
         {/* HOME */}
         {view === "home" && (
           <>
+            <div className="hero-banner">
+              <img src="/hero-family.jpg" alt="Happy family celebrating together" />
+              <div className="hero-banner-overlay" />
+              <div className="hero-banner-text">
+                <h2>{lang === "es" ? "Su camino comienza aquí" : lang === "vi" ? "Hành trình bắt đầu tại đây" : lang === "ko" ? "여기서 시작하세요" : lang === "zh" ? "您的旅程从这里开始" : lang === "tl" ? "Nagsisimula dito ang landas mo" : "Your journey starts here"}</h2>
+              </div>
+            </div>
             <div className="hero">
               <h1>{t.tagline}</h1>
               <p>{t.subtitle}</p>
+              <div className="hero-price">{lang === "es" ? "Desde solo " : lang === "vi" ? "Chỉ từ " : lang === "ko" ? "" : lang === "zh" ? "仅需 " : lang === "tl" ? "Simula sa " : "Starting at "}<span>$49</span></div>
               <button className="cta" onClick={() => formRef.current?.scrollIntoView({ behavior: "smooth" })}>
                 {t.pickForm} ↓
               </button>
